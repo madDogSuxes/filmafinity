@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crud</title>
+</head>
+<body>
+    <div class="container">
+        <!--La URL de href debe aparecer en el controlador para mostrar el formulario que añade registros-->
+        <a href="/crud/add" class="btn btn-primary">Añadir película</a>
+        <table class="table striped">
+            <tr>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Sinopsis</th>
+                <th>Fecha</th>
+                <th>Nacionalidad</th>
+                <th>Imagen</th>
+                <th>Modificar</th>
+                <th>Borrar</th>
+            </tr>
+            <tr th:each="p:${peliculas}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.titulo}"></td>
+                <td th:text="${#strings.substring(p.sinopsis,0,15)}"></td>
+                <td th:text="${p.fecha}"></td>
+                <td th:text="${p.nacionalidad}"></td>
+                <td><img th:src="${p.imagen}" style="height: 100px"></td>
+                <td>
+                    <!--La URL de th:href es un GetMapping que se ha puesto en el controlador-->
+                    <a th:href="'/crud/update/' + ${p.id}" class="btn btn-primary">Modificar</a>
+                </td>
+
+                <td>
+                    <!--La URL de th:href es un GetMapping que se ha puesto en el controlador-->
+                    <a th:href="'/crud/delete/' + ${p.id}" class="btn btn-danger">Borrar</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Presio y detalle</title>
+</head>
+<body>
+    <h1 th:text="${pelicula.titulo}"></h1>
+    <p th:text="${pelicula.sinopsis}"></p>
+    <p th:text="${pelicula.nacionalidad} + ' - ' + ${pelicula.fecha}"></p>
+    <img th:src="'/img/' + ${pelicula.imagen}"><br>
+    <iframe width="560" height="315" th:src="${pelicula.trailer}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div th:each="comentario:${post}">
+        <h4 th:text="${comentario.titulo}"></h4>
+        <p th:text="${comentario.contenido}"></p>
+        <p th:text="${comentario.fecha}"></p>
+    </div>
+    <a href="/">Volver a inicio</a>
+
+</body>
+</html>
